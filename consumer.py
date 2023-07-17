@@ -36,8 +36,6 @@ schema = [
     bigquery.SchemaField('Nr_employed', 'INT64'),
     bigquery.SchemaField('y', 'STRING')
 ]
-
-
 table_ref = bigquery.TableReference(dataset, table_name)
 table = bigquery.Table(table_ref, schema=schema)
 client.create_table(table, exists_ok=True)
@@ -53,23 +51,23 @@ def read_messages():
 
     while True:
         try:
+            message = consumer.poll(1.0)  # Poll the message from Kafka
+            if message is None:
+                continue
+            if message.error():
+                print(f"Consumer error: {message.error()}")
+                continue
+            
+            print(f"Successfully poll a record from "
+                  f"Kafka topic: {message.topic()}, partition: {message.partition()}, offset: {message.offset()}\n"
+                  f"message key: {message.key()} || message value: {message.value()}")
             client.insert_rows(table, [message.value()])
+
         except Exception as e:
             print(f"Exception while inserting into BigQuery: {e}")
+            break  # If exception occurs, break the loop and close the consumer
 
-        else:
-            if message is not None:
-                print(f"Successfully poll a record from "
-                      f"Kafka topic: {message.topic()}, partition: {message.partition()}, offset: {message.offset()}\n"
-                      f"message key: {message.key()} || message value: {message.value()}")
-                consumer.commit()
-                # INSERT STREAM TO BIGQUERY
-                client.insert_rows(table, [message.value()])
-            else:
-                print("No new messages at this point. Try again later.")
-
-        consumer.close()
-
+    consumer.close()  # Close the consumer after finishing consuming messages
 
 if __name__ == "__main__":
     read_messages()
