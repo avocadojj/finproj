@@ -1,8 +1,6 @@
 To Do :
-1. Script untuk memberi ID dan membagi tiap date.
-2.
-
-
+1. Script untuk memberi ID dan membagi dataset tiap date, mengecek null dan mengisinya, merubah nama column.
+2. membuat DAG
 
 ==================================================
 Why need streaming ?
