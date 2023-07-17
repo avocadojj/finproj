@@ -1,0 +1,30 @@
+{
+  "namespace": "com.example.avro",
+  "type": "record",
+  "name": "MarketingDataValue",
+  "fields": [
+    {"name": "ID", "type": "int", "default": 0},
+    {"name": "Date", "type": "string", "default": ""},
+    {"name": "Age", "type": "int", "default": 0},
+    {"name": "Job", "type": "string", "default": ""},
+    {"name": "Marital", "type": "string", "default": ""},
+    {"name": "Education", "type": "string", "default": ""},
+    {"name": "Default", "type": "string", "default": ""},
+    {"name": "Housing", "type": "string", "default": ""},
+    {"name": "Loan", "type": "string", "default": ""},
+    {"name": "Contact", "type": "string", "default": ""},
+    {"name": "Month", "type": "string", "default": ""},
+    {"name": "Day_of_week", "type": "string", "default": ""},
+    {"name": "Duration", "type": "int", "default": 0},
+    {"name": "Campaign", "type": "int", "default": 0},
+    {"name": "pdays", "type": "int", "default": 0},
+    {"name": "Previous", "type": "int", "default": 0},
+    {"name": "Poutcome", "type": "string", "default": ""},
+    {"name": "Emp_var_rate", "type": "float", "default": 0.0},
+    {"name": "Cons_conf_idx", "type": "float", "default": 0.0},
+    {"name": "Cons_price_idx", "type": "float", "default": 0.0},
+    {"name": "Euribor3m", "type": "float", "default": 0.0},
+    {"name": "Nr_employed", "type": "int", "default": 0},
+    {"name": "y", "type": "string", "default": ""}
+  ]
+}
